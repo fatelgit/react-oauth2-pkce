@@ -12,12 +12,12 @@ export const AuthContext = React.createContext<AuthContextProps | undefined>(
   undefined
 )
 
-export const useAuth = (): AuthContextProps => {
+export const useAuth = <T extends any>(): AuthContextProps & T => {
   const context = useContext(AuthContext)
   if (context === undefined) {
     throw new Error('useAuth must be used within a AuthProvider')
   }
-  return context
+  return context as (T & AuthContextProps)
 }
 
 export function withAuth<T>(

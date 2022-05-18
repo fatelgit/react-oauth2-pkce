@@ -5,5 +5,5 @@ export declare type AuthContextProps = {
 };
 export declare type AuthContextType = AuthContextProps | undefined;
 export declare const AuthContext: React.Context<AuthContextProps | undefined>;
-export declare const useAuth: () => AuthContextProps;
+export declare const useAuth: <T extends unknown>() => AuthContextProps & T;
 export declare function withAuth<T>(ComponentToWrap: React.ComponentType<T & AuthServiceProps>): React.FC<T & AuthServiceProps>;
