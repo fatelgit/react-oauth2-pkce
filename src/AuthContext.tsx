@@ -2,22 +2,22 @@ import React, { useContext, ReactElement } from 'react'
 
 import { AuthServiceProps, AuthService } from './AuthService'
 
-export type AuthContextProps = {
-  authService: AuthService
+export type AuthContextProps<T extends any> = {
+  authService: AuthService & T
 }
 
-export type AuthContextType = AuthContextProps | undefined
+export type AuthContextType = AuthContextProps<any> | undefined
 
-export const AuthContext = React.createContext<AuthContextProps | undefined>(
+export const AuthContext = React.createContext<AuthContextProps<any> | undefined>(
   undefined
 )
 
-export const useAuth = <T extends any>(): AuthContextProps & T => {
+export const useAuth = <T extends any>(): AuthContextProps<T> => {
   const context = useContext(AuthContext)
   if (context === undefined) {
     throw new Error('useAuth must be used within a AuthProvider')
   }
-  return context as (T & AuthContextProps)
+  return context
 }
 
 export function withAuth<T>(
