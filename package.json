@@ -19,7 +19,7 @@
     "node": ">=10"
   },
   "scripts": {
-    "install": "run-s build",
+    "prepare": "run-s build",
     "build": "microbundle-crl --no-compress --format modern,cjs",
     "start": "microbundle-crl watch --no-compress --format modern,cjs",
     "prepublish": "run-s build",
